@@ -1,7 +1,40 @@
 import React from "react";
 import Logo from "../components/common/Logo";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/authSlice";
 
 const Register = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [phone, setPhone] = useState('')
+  const dispatch = useDispatch()
+  const handleNameChange = (e)=>{
+    setName(e.target.value)
+  }
+  const handleEmailChange = (e)=>{
+    setEmail(e.target.value)
+  }
+  const handlePasswordChange = (e)=>{
+    setPassword(e.target.value)
+  }
+  const handlePhoneChange = (e)=>{
+    setPhone(e.target.value)
+  }
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    const result = await dispatch(register(
+      {
+        name,
+        email,
+        password,
+        phone
+      }
+    ))
+    console.log(email, password);
+    console.log(result.payload.message)
+  }
   return (
     <div className="h-screen flex items-center justify-center w-full bg-[url(https://i.pinimg.com/1200x/e9/28/72/e92872fcfde7e1a0541f1f5835a4cb38.jpg)] object-cover">
       <div className=" h-full w-full lg:h-9/10 lg:w-3/6 md:h-9/10 md:w-4/6 bg-white backdrop-blur-sm rounded-2xl">
@@ -14,26 +47,34 @@ const Register = () => {
           </h1>
         </div>
         <div className="h-2/3 flex flex-col items-center justify-center py-5">
-          <form className="h-full w-full flex flex-col items-center justify-center gap-2">
+          <form className="h-full w-full flex flex-col items-center justify-center gap-2" onSubmit={(e)=>{handleSubmit(e)}}>
             <input
+              onChange = {(e)=>{handleNameChange(e)}}
+              value={name}
               className="border border-gray-400 w-9/10 rounded-md p-2 outline-0"
               type="text"
               placeholder="Your Name"
             />
 
             <input
+              onChange = {(e)=>{handleEmailChange(e)}}
+              value={email}
               className="border border-gray-400 w-9/10 rounded-md p-2 outline-0"
               type="email"
               placeholder="Email Address"
             />
 
             <input
+              onChange = {(e)=>{handlePasswordChange(e)}}
+              value={password}
               className="border border-gray-400 w-9/10 rounded-md p-2 outline-0"
               type="password"
               placeholder="Enter Password"
             />
 
             <input
+              onChange = {(e)=>{handlePhoneChange(e)}}
+              value={phone}
               className="border border-gray-400 w-9/10 rounded-md p-2 outline-0"
               type="phone"
               placeholder="Mobile No."

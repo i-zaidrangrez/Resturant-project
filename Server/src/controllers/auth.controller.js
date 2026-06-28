@@ -68,13 +68,14 @@ export async function loginController(req, res) {
         message: "Password is Incorrect",
       });
     }
-    const refreshToken = generateRefreshToken({id : user._id})
+    const refreshToken = generateRefreshToken({id : user._id,name : user.name})
     user.refreshToken = refreshToken
     user.refreshTokenExpiryTime = new Date(
       Date.now() + 7 * 24 * 60 * 60 * 1000,
     );
+    user.lastLogin = new Date(Date.now())
     await user.save()
-    const accessToken = generateAccessToken({id : user._id})
+    const accessToken = generateAccessToken({id : user._id , name: user.name})
     res.cookie("accessToken", accessToken);
     return res.status(200).json({
       message: "Login SuccessFully",
