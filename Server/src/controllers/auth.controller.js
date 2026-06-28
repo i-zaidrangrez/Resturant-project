@@ -38,9 +38,13 @@ export async function registerController(req, res) {
     return res.status(201).json({
       message: "User Registered Successfully",
       user: {
-        email,
-        name,
-        phone,
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role : user.role,
+        phone : user.phone,
+        refreshToken,
+        accessToken,
       },
     });
   } catch (error) {
@@ -83,6 +87,9 @@ export async function loginController(req, res) {
         id: user._id,
         name: user.name,
         email: user.email,
+        role : user.role,
+        refreshToken,
+        accessToken,
       },
     });
   } catch (error) {

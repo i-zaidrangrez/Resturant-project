@@ -1,8 +1,9 @@
 import React from "react";
 import Logo from "../components/common/Logo";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState('')
@@ -10,6 +11,8 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const auth = useSelector((state)=>state.auth)
   const handleNameChange = (e)=>{
     setName(e.target.value)
   }
@@ -31,9 +34,10 @@ const Register = () => {
         password,
         phone
       }
-    ))
+    )).unwrap();
+    navigate('/home')
     console.log(email, password);
-    console.log(result.payload.message)
+    console.log(result)
   }
   return (
     <div className="h-screen flex items-center justify-center w-full bg-[url(https://i.pinimg.com/1200x/e9/28/72/e92872fcfde7e1a0541f1f5835a4cb38.jpg)] object-cover">
@@ -80,7 +84,7 @@ const Register = () => {
               placeholder="Mobile No."
             />
             <p className="text-xs text-gray-500">Already a Customer? <span className="text-[#e8691a]">Log In</span></p>
-            <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">Register</button>
+            <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">{auth.loading? "Registering" : "Register"}</button>
           </form>
         </div>
       </div>

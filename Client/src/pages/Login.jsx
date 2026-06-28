@@ -1,13 +1,18 @@
 import React from "react";
 import Logo from "../components/common/Logo";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const accessToken = localStorage.getItem('AccessToken');
+  const auth = useSelector((state)=>state.auth);
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -16,14 +21,18 @@ const Login = () => {
   };
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const result  = await dispatch(
-      login({
-        email,
-        password,
-      }),
-    );
-    console.log(email, password);
-    console.log(result.payload.message)
+   try {
+     const result  = await dispatch(
+       login({
+         email,
+         password,
+       }),
+     ).unwrap();
+     navigate('/home')
+     console.log(email, password);
+   } catch (error) {
+    console.log(error)
+   }
   };
 
   return (
@@ -67,7 +76,7 @@ const Login = () => {
               New Customer? <span className="text-[#e8691a]">Sign Up</span>
             </p>
             <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">
-              Log In
+              {auth.loading? "Logging In..." : "Log In"}
             </button>
           </form>
         </div>
