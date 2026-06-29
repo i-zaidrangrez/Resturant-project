@@ -63,7 +63,7 @@ export async function loginController(req, res) {
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(400).json({
-        message: "User Does Not Exist Please Register",
+        message: `user doesn't exist with ${email} Please Register`,
       });
     }
     const isMatch = await bcrypt.compare(password, user.passwordHash);

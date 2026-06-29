@@ -44,7 +44,8 @@ const authSlice = createSlice({
 
         }).addCase(login.rejected , (state , action) => {
             state.loading = false
-            console.log(action.payload)
+            state.error = action.payload
+            // console.log(action)
         })
         builder.addCase(register.pending, (state , action)=>{
             state.loading = true
@@ -59,7 +60,7 @@ const authSlice = createSlice({
 
         }).addCase(register.rejected , (state , action) => {
             state.loading = false
-            console.log(action.payload)
+            state.error = action.payload
         })
     }
 })

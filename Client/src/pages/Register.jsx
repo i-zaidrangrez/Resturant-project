@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/authSlice";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState('')
@@ -83,9 +84,10 @@ const Register = () => {
               type="phone"
               placeholder="Mobile No."
             />
-            <p className="text-xs text-gray-500">Already a Customer? <span className="text-[#e8691a]">Log In</span></p>
+            <p className="text-xs text-gray-500">Already a Customer? <Link to='/login' className="text-[#e8691a]">Log In</Link></p>
             <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">{auth.loading? "Registering" : "Register"}</button>
           </form>
+          <p className="text-red-500">{auth.error ? auth.error : ""}</p>
         </div>
       </div>
     </div>

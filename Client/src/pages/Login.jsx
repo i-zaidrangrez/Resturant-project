@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -71,14 +72,15 @@ const Login = () => {
               type="password"
               placeholder="Enter Password"
               value={password}
-            />
+              />
             <p className="text-xs text-gray-500">
-              New Customer? <span className="text-[#e8691a]">Sign Up</span>
+              New Customer? <Link to='/register' className="text-[#e8691a]">Sign Up</Link>
             </p>
             <button className="bg-[#e8691a] h-15/100 w-9/10 rounded-md outline-0 my-2 cursor-pointer active:bg-red-600 hover:bg-[#ff9e61]">
               {auth.loading? "Logging In..." : "Log In"}
             </button>
           </form>
+              <p className="text-red-500">{auth.error ? auth.error : ""}</p>
         </div>
       </div>
     </div>
