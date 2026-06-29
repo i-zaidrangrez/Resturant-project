@@ -63,7 +63,7 @@ export async function loginController(req, res) {
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(400).json({
-        message: `user doesn't exist with ${email} Please Register`,
+        message: `user doesn't exist with this email Please Register`,
       });
     }
     const isMatch = await bcrypt.compare(password, user.passwordHash);
@@ -96,3 +96,4 @@ export async function loginController(req, res) {
     console.log(error.message);
   }
 }
+

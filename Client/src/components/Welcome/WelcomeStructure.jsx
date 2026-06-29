@@ -7,11 +7,10 @@ import { Link } from 'react-router-dom'
 const WelcomeStructure = () => {
   return (
     <>
-        <div className='bg-white h-screen w-full sm:h-screen sm:w-full lg:h-2/3 lg:w-1/2 flex flex-col items-center justify-start'>
+        <div className='bg-white h-screen w-full sm:h-screen sm:w-full md:h-2/3 md:w-1/2 lg:h-2/3 lg:w-1/2 flex flex-col items-center justify-start rounded-tr-[40%] rounded-tl-[40%] md:rounded-tr-2xl md:rounded-tl-2xl'>
             <UpperWelcome/>
             <WelcomeText/>
             <WelcomeButtons/>
-            <p className="text-xs text-gray-500">Already a Customer? <Link to='/login' className="text-[#e8691a]">Log In</Link></p>
         </div>
     </>
   )
