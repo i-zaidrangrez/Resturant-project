@@ -6,7 +6,7 @@ export const login = createAsyncThunk('/auth/login',async(data , thunkAPI)=>{
         const res = await axios.post('http://localhost:3000/auth/v1/login',data)
         return res.data
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data.message)
+        return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
 export const register = createAsyncThunk('/auth/register',async(data , thunkAPI)=>{
@@ -14,7 +14,7 @@ export const register = createAsyncThunk('/auth/register',async(data , thunkAPI)
         const res = await axios.post('http://localhost:3000/auth/v1/register',data)
         return res.data
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data.message)
+        return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
 
@@ -34,6 +34,7 @@ const authSlice = createSlice({
         builder.addCase(login.pending, (state , action)=>{
             state.loading = true
         }).addCase(login.fulfilled , (state , action) => {
+            state.loading = false
             state.name = action.payload.user.name
             state.email = action.payload.user.email
             state.role = action.payload.user.role
@@ -50,6 +51,7 @@ const authSlice = createSlice({
         builder.addCase(register.pending, (state , action)=>{
             state.loading = true
         }).addCase(register.fulfilled , (state , action) => {
+            state.loading = false
             state.name = action.payload.user.name
             state.email = action.payload.user.email
             state.role = action.payload.user.role
@@ -61,6 +63,7 @@ const authSlice = createSlice({
         }).addCase(register.rejected , (state , action) => {
             state.loading = false
             state.error = action.payload
+            console.log(action)
         })
     }
 })

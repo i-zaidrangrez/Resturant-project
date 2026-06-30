@@ -60,10 +60,10 @@ const Register = () => {
               handleSubmit(e);
             }}
           >
-            <h1 className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
-              <h1 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
+            <div className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
+              <h2 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
                 <FaUser />
-              </h1>
+              </h2>
               <input
                 onChange={(e) => {
                   handleNameChange(e);
@@ -73,11 +73,11 @@ const Register = () => {
                 type="text"
                 placeholder="Your Name"
               />
-            </h1>
-            <h1 className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
-              <h1 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
+            </div>
+            <div className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
+              <h2 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
                 <MdEmail />
-              </h1>
+              </h2>
               <input
                 onChange={(e) => {
                   handleEmailChange(e);
@@ -87,11 +87,11 @@ const Register = () => {
                 type="email"
                 placeholder="Enter Email"
               />
-            </h1>
-            <h1 className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
-              <h1 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
+            </div>
+            <div className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
+              <h2 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
                 <FaLock />
-              </h1>
+              </h2>
               <input
                 onChange={(e) => {
                   handlePasswordChange(e);
@@ -101,11 +101,11 @@ const Register = () => {
                 type="password"
                 placeholder="Enter Password"
               />
-            </h1>
-            <h1 className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
-              <h1 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
+            </div>
+            <div className=" w-9/10 flex items-center justify-center place-content-center border rounded-md">
+              <h2 className="w-7/100 text-[#e8691a] text-xl flex items-center justify-center">
                 <FaPhone />
-              </h1>
+              </h2>
               <input
                 onChange={(e) => {
                   handlePhoneChange(e);
@@ -115,7 +115,7 @@ const Register = () => {
                 type="tel"
                 placeholder="Enter Phone no."
               />
-            </h1>
+            </div>
 
 
             <p className="text-xs text-gray-500">
