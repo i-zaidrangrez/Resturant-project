@@ -83,3 +83,23 @@ export async function getTable(req,res) {
     })
   }
 }
+
+export async function getAllTable(req,res) {
+  try {
+    const {admin} = req.user.role
+    const tables = await tableModel.find()
+    if(!tables){
+      return res.status(404).json({
+        message: "Not available"
+      })
+    }
+    return res.status(200).json({
+      message : "Tables Fetched",
+      tables
+    })
+  } catch (error) {
+    return res.status(500).json({
+      message : error
+    })
+  }
+}

@@ -5,7 +5,7 @@ const Home = () => {
     const auth = useSelector((state)=>state.auth)
     console.log(auth)
   return (
-    <div className='bg-red-500'>{auth.name}</div>
+    <div className='bg-red-500'>Homepage</div>
   )
 }
 

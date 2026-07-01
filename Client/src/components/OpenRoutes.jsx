@@ -7,7 +7,7 @@ const OpenRoutes = (props) => {
     const accessToken = localStorage.getItem('AccessToken')
     useEffect(() => {
   if (accessToken) {
-    navigate('/home');
+    navigate('/');
   }
 }, [accessToken, navigate]);
   return (
