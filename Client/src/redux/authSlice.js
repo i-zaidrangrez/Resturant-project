@@ -9,6 +9,7 @@ export const login = createAsyncThunk('/auth/login',async(data , thunkAPI)=>{
         return thunkAPI.rejectWithValue(error.response?.data?.message) || "Something Went Wrong"
     }
 })
+
 export const register = createAsyncThunk('/auth/register',async(data , thunkAPI)=>{
     try {
         const res = await axios.post('http://localhost:3000/auth/v1/register',data)

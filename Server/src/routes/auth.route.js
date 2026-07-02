@@ -2,7 +2,7 @@ import express from 'express'
 import { deActivateUser, deleteUser, loginController, registerController, updateUser} from '../controllers/auth.controller.js'
 import { handleValidation } from '../middlewares/validationMiddleware.js'
 import { validateRegistration, validateUpdate } from '../validation/validation.js'
-import authMiddleware from '../middlewares/authMiddleware.js'
+import {authMiddleware} from '../middlewares/authMiddleware.js'
 import checkRole from '../middlewares/checkRole.js'
 
 const router = express.Router()

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { type } from 'os'
 
 const sessionSchema = mongoose.Schema({
     sessionToken : {
@@ -8,6 +9,9 @@ const sessionSchema = mongoose.Schema({
     deviceId  : {
         type : String,
         default : null
+    },
+    expiresAt:{
+        type : Date
     },
     userId : {
         type : mongoose.Schema.Types.ObjectId,
